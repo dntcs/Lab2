@@ -23,32 +23,57 @@ public:
         printf("%d\n", len);
         printf("~Line()\n");
     }
-    void addition(int len2){
+    void addition(int add){
         printf("Addition\n");
-        len = len + len2;
+        len = len + add;
     }
-    void subtraction(int len3);
+    void subtraction(int sub);
 };
 
-void Line::subtraction(int len3) {
+void Line::subtraction(int sub) {
     printf("Substraction\n");
-    len = len - len3;
+    len = len - sub;
 };
+
+class MyRectangle : public Line {
+protected:
+    int len2;
+public:
+    MyRectangle() : Line(){
+        printf("MyRectangle()\n");
+        len2 = 0;
+    }
+    MyRectangle(int len, int len2): Line(len){
+        printf("MyRectangle(int len)\n");
+        this->len2 = len2;
+    }
+    MyRectangle(const MyRectangle &a) {
+        printf("MyRectangle(const MyRectangle &a)\n");
+        len2 = a.len2;
+        len = a.len;
+    }
+    ~MyRectangle() {
+        printf("%d len2=%d\n", len, len2);
+        printf("~MyRectangle()\n");
+    }
+    void multiply(int mul){
+        printf("Multiply\n");
+        len = len * mul;
+        len2 = len2 * mul;
+    }
+};
+
+
 
 int main() {
     SetConsoleOutputCP(65001);
     SetConsoleCP(65001);
 
-    Line *b = new Line(24);
-    Line *b2 = new Line(35);
+    MyRectangle *b = new MyRectangle(4, 6);
 
-    // b->len нельзя т.к. протектед
-
-    b->addition(63);
-    b2->subtraction(13);
+    b->multiply(2);
 
     delete b;
-    delete b2;
 
     return 0;
 
