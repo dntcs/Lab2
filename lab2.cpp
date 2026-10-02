@@ -69,11 +69,11 @@ int main() {
     SetConsoleOutputCP(65001);
     SetConsoleCP(65001);
 
-    MyRectangle *b = new MyRectangle(4, 6);
-
-    b->multiply(2);
-
-    delete b;
+    Line *b1 = new MyRectangle(2, 6);
+    MyRectangle *b2 = new MyRectangle(4, 8);
+    
+    delete b1;
+    delete b2;
 
     return 0;
 
